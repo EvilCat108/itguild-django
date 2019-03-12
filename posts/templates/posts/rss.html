@@ -1,0 +1,38 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>RSS Feed</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+</head>
+
+<body>
+  {% extends 'base.html' %}
+  {% block content %}
+
+Popular IT RSS feeds<p>
+<hr>
+<h2>INFORMATION WEEK</h2>
+<hr>
+
+{% for entry in feed.entries %}
+    <a href="{{entry.link}}" target="_blank">{{entry.title}}</a>
+    <p>
+    {{ entry.published }}
+    <p>
+    {{ entry.summary }}
+    <p>
+      <img src="{{ entry.media_content.0.url }}"></img>
+    <hr>
+{% endfor %}
+
+  {% endblock %}
+  <script src="js/scripts.js"></script>
+</body>
+</html>

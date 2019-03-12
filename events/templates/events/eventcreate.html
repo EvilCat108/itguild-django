@@ -1,0 +1,57 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>New IT Guild Event Creation</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+</head>
+
+<body>
+  {% extends 'base.html' %}
+  {% block content %}
+  <h1>Create New Event</h1>
+  <br>
+  {% if error %}
+  {{ error }}
+  <br />
+  <br />
+  {% endif %}
+
+  <form method="POST" action="{% url 'events:eventcreate' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    Event Name:<br>
+    <input type="text" name="title" /><p>
+    Where:<br>
+    <input type="text" name="place" />
+    <br>
+    <hr>
+    Event start date:
+    <input type="datetime-local" name="startdate" value="2018-11-27T19:30">
+    <p>
+    Event end date:
+    <input type="datetime-local" name="enddate" value="2018-11-28T19:30">
+    <hr>
+    <p>
+    Body:<br>
+    <textarea cols="40" rows="10" name="body"></textarea><p>
+    <br>Icon for your event:<br>
+    <input type="file" name="icon"/><p>
+    <br>
+    Image:<br>
+   <input type="file" name="image" accept="image/*"><p>
+   URL of organization:<br>
+   <input type="text" name="url" /><p>
+     <hr>
+    <input class="btn btn-primary" type="submit" value="Save Event">
+  </form>
+  {% endblock %}
+  <script src="js/scripts.js"></script>
+</body>
+</html>
